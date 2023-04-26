@@ -5,7 +5,7 @@ public class Main {
     }
 
     public LinkedBinarySearchTree organizeBooks(String[] books){
-        // parameter will be an array of Book objects, not an array of Strings
+        // parameter and return will be an array of Book objects, not an array of Strings
         // Organize books based on title, author, genre, or keyword (tag)
     }
 
