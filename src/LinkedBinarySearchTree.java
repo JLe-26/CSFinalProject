@@ -1,7 +1,7 @@
 public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
     private E data;
-    private LinkedBinarySearchTree<E> leftSubTree;
-    private LinkedBinarySearchTree<E> rightSubTree;
+    protected LinkedBinarySearchTree<E> leftSubTree;
+    protected LinkedBinarySearchTree<E> rightSubTree;
     private int count;
 
     public LinkedBinarySearchTree() {
@@ -23,6 +23,7 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
 
     @Override
     public boolean remove(E e) {
+
         return false;
     }
 
@@ -56,6 +57,7 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
 
     @Override
     public String toStringInOrder() {
+
         return null;
     }
 
