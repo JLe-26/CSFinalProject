@@ -47,4 +47,9 @@ public class Main {
         return organizedByTag;
     }
 
+    public void treeToList(ArrayList<Book> orgBooks){
+        // Will convert a sorted binary tree into an array list that can be returned in any of the other sort methods
+        // returns an array list of book objects, not null
+    }
+
 }
