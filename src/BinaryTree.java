@@ -6,6 +6,6 @@ public interface BinaryTree<E> {
     boolean isEmpty();
     boolean contains(E e);
 
-    String toStringInOrder();
+    String toStringInOrder(LinkedBinarySearchTree<E> tree);
 
 }

@@ -56,9 +56,19 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
     }
 
     @Override
-    public String toStringInOrder() {
+    public String toStringInOrder(LinkedBinarySearchTree<E> tree) {
+        String inOrderTree;
+        StringBuilder sb = new StringBuilder();
+        if (tree.getRootElement() == null){
+            return "Tree is empty!";
+        } else {
+            toStringInOrder(leftSubTree);
+            sb.append(leftSubTree.data);
+            toStringInOrder(rightSubTree);
+            sb.append(rightSubTree.data);
+        }
+        return sb.toString();
 
-        return null;
     }
 
 }
