@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
     private E data;
     protected LinkedBinarySearchTree<E> leftSubTree;
@@ -57,6 +60,7 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
 
     @Override
     public String toStringInOrder(LinkedBinarySearchTree<E> tree) {
+        // WILL REVISE TO AN IN ORDER METHOD THAT RETURNS AN ARRAYLIST OF BOOKS OBJECTS, NOT A STRING
         String inOrderTree;
         StringBuilder sb = new StringBuilder();
         if (tree.getRootElement() == null){
@@ -69,6 +73,16 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
         }
         return sb.toString();
 
+    }
+
+    public ArrayList<String> treeToList(LinkedBinarySearchTree<Book> tree){
+        // Will convert a sorted binary tree into an array list that can be returned in any of the other sort methods
+        // returns an array list of book objects, not null
+        String str = tree.toStringInOrder(tree);
+        String[] strSplit = str.split("");
+        ArrayList<String> strList = new ArrayList<String>();
+        Arrays.asList(strSplit);
+        return strList;
     }
 
 }
