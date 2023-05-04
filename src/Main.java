@@ -1,17 +1,16 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException{
-        String[] files = {"Book_data/Book1.csv"};
+        String[] files = {"src/Book1.csv"};
         ArrayList<Book> library = loadBooks(files);
 
         OrganizeBooks.organizeTitle(library);
         OrganizeBooks.organizeAuthor(library);
     }
-
+// PUT COMMENTS FOR JEAN AND EVA
     public static ArrayList<Book> loadBooks(String[] files) throws FileNotFoundException {
         ArrayList<Book> library = new ArrayList<>();
         for (String file : files) {

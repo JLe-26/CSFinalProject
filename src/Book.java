@@ -1,4 +1,4 @@
-public class Book {
+public class Book implements Comparable<Book> {
     private String ISBN10;
     private String title;
     private String subtitle;
@@ -124,5 +124,10 @@ public class Book {
         }
         representation.append("\n");
         return representation.toString();
+    }
+
+
+    public int compareTo(Book o) {
+        return 0;
     }
 }

@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
-    private E data;
+public class LinkedBinarySearchTree<E extends Comparable<E>> implements BinaryTree<E> {
+    private final E data;
     protected LinkedBinarySearchTree<E> leftSubTree;
     protected LinkedBinarySearchTree<E> rightSubTree;
     private int count;
@@ -21,7 +20,13 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
     }
     @Override
     public void insert(E e) {
-
+        if (e.compareTo(data) < 0) {
+            leftSubTree.insert(e);
+        } else if (e.compareTo(data) > 0) {
+            rightSubTree.insert(e);
+        } else {
+            e = data;
+        }
     }
 
     @Override
@@ -59,30 +64,22 @@ public class LinkedBinarySearchTree<E> implements BinaryTree<E> {
     }
 
     @Override
-    public String toStringInOrder(LinkedBinarySearchTree<E> tree) {
-        // WILL REVISE TO AN IN ORDER METHOD THAT RETURNS AN ARRAYLIST OF BOOKS OBJECTS, NOT A STRING
-        String inOrderTree;
-        StringBuilder sb = new StringBuilder();
-        if (tree.getRootElement() == null){
-            return "Tree is empty!";
+    public ArrayList<Book> inOrder() {
+        ArrayList<Book> booksInOrder = new ArrayList<>();
+        if(this.isEmpty() != true){
+            if(leftSubTree.isEmpty() != true){
+                leftSubTree.inOrder();
+                booksInOrder.add((Book) leftSubTree.data);
+            } else {
+                booksInOrder.add((Book) data);
+                if (rightSubTree.isEmpty() != true) {
+                    rightSubTree.inOrder();
+                    booksInOrder.add((Book) rightSubTree.data);
+                }
+            }
         } else {
-            toStringInOrder(leftSubTree);
-            sb.append(leftSubTree.data);
-            toStringInOrder(rightSubTree);
-            sb.append(rightSubTree.data);
+            System.out.println("This tree is empty!");
         }
-        return sb.toString();
-
+        return booksInOrder;
     }
-
-    public ArrayList<String> treeToList(LinkedBinarySearchTree<Book> tree){
-        // Will convert a sorted binary tree into an array list that can be returned in any of the other sort methods
-        // returns an array list of book objects, not null
-        String str = tree.toStringInOrder(tree);
-        String[] strSplit = str.split("");
-        ArrayList<String> strList = new ArrayList<String>();
-        Arrays.asList(strSplit);
-        return strList;
-    }
-
 }

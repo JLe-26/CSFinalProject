@@ -1,13 +1,12 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class OrganizeBooks {
-
-    public static ArrayList<String> organizeTitle(ArrayList<Book> library){
+// Methods that organize books alphabetically based on title, author, genre, or keyword
+    public static ArrayList<Book> organizeTitle(ArrayList<Book> library){
         // Returns an ArrayList of Strings of books sorted by title (using in order)
         // Other methods will organize based on author, genre, or keyword (tag)
-        ArrayList<String> organizedByTitle = new ArrayList<>();
         LinkedBinarySearchTree<Book> sortedTitle = new LinkedBinarySearchTree<>();
+        // Need to add data in order for the left and right subtrees to be created, but cannot put an array list of book objects
         for(int i = 0; i< library.size(); i++){
             if(library.get(i).compareToTitle(library.get(i+1)) < 1){
                 // insert titles to the left subtree of sorted books by title
@@ -19,13 +18,10 @@ public class OrganizeBooks {
                 sortedTitle.rightSubTree.insert(library.get(i));
             }
         }
-        sortedTitle.treeToList(sortedTitle);
-        // tree is now sorted by title, need to insert the elements of the tree into an arraylist organizedByTitle
-        return organizedByTitle;
+        return sortedTitle.inOrder();
     }
 
     public static ArrayList<Book> organizeAuthor(ArrayList<Book> library){
-        ArrayList<Book> organizedByAuthor = new ArrayList<>();
         LinkedBinarySearchTree<Book> sortedAuthor = new LinkedBinarySearchTree<>();
         for(int i = 0; i < library.size(); i++){
             if(library.get(i).compareToAuthors(library.get(i+1)) < 1){
@@ -36,9 +32,13 @@ public class OrganizeBooks {
                 sortedAuthor.rightSubTree.insert(library.get(i));
             }
         }
-        sortedAuthor.treeToList(sortedAuthor);
-        // tree is now sorted by title, need to insert the elements of the tree into an arraylist organizedByAuthor
-        return organizedByAuthor;
+        return sortedAuthor.inOrder();
+    }
+
+    public static ArrayList<Book> organizeCategories(ArrayList<Book> library){
+        LinkedBinarySearchTree<Book> sortedCategories = new LinkedBinarySearchTree<>();
+        // need a compareTo method for categories
+        return sortedCategories.inOrder();
     }
 
 }
