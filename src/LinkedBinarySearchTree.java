@@ -27,9 +27,9 @@ public class LinkedBinarySearchTree<E extends Comparable<E>> implements BinaryTr
     @Override
     public void insert(E e) {
         if (e.compareTo(data) < 0) {
-                leftSubTree.insert(e);
+            leftSubTree.insert(e);
         } else if (e.compareTo(data) > 0) {
-                rightSubTree.insert(e);
+            rightSubTree.insert(e);
         } else {
             e = data;
         }

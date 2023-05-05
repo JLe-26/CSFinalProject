@@ -20,20 +20,17 @@ public class OrganizeBooks {
         for(int i = 0; i< library.size(); i++){
             if(library.get(i).compareToTitle(library.get(i+1)) < 1 || library.get(i).compareToTitle(library.get(i+1)) == 0){
                 // insert titles to the left subtree of sorted books by title
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedTitle.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedTitle.rightSubTree.insert(library.get(i+1)); //Inserts other book to the right
             } else if(library.get(i).compareToTitle(library.get(i+1)) > 1){
                 // insert titles to the right subtree of sorted books by title
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedTitle.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedTitle.rightSubTree.insert(library.get(i)); // Inserts other book to the right
             }
         }
         // There is now a BST sorted by title called sortedTitle
         // Need to separate so this returns null and a separate getter will return the arraylist
+        //
         return sortedTitle.inOrder();
     }
 
@@ -46,14 +43,10 @@ public class OrganizeBooks {
         LinkedBinarySearchTree<Book> sortedAuthor = new LinkedBinarySearchTree<>();
         for(int i = 0; i < library.size(); i++){
             if(library.get(i).compareToAuthors(library.get(i+1)) < 1 || library.get(i).compareToAuthors(library.get(i+1)) == 0){ // If the first book is alphabetically first or equal to the second, it will go to the left
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedAuthor.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedAuthor.rightSubTree.insert(library.get(i+1)); // Inserts other book to the right
             } else if(library.get(i).compareToAuthors(library.get(i+1)) > 1){
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedAuthor.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedAuthor.rightSubTree.insert(library.get(i)); // Inserts other book to the right
             }
         }
@@ -70,14 +63,10 @@ public class OrganizeBooks {
         LinkedBinarySearchTree<Book> sortedCategories = new LinkedBinarySearchTree<>();
         for(int i = 0; i < library.size(); i++){
             if(library.get(i).compareToCategories(library.get(i+1)) < 1 || library.get(i).compareToCategories(library.get(i+1)) == 0){
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedCategories.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedCategories.rightSubTree.insert(library.get(i+1)); // Inserts other book to the right
             } else if (library.get(i).compareToCategories(library.get(i+1)) > 1){
-                LinkedBinarySearchTree<Book> leftSubTree = new LinkedBinarySearchTree<>();
                 sortedCategories.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                LinkedBinarySearchTree<Book> rightSubTree = new LinkedBinarySearchTree<>();
                 sortedCategories.rightSubTree.insert(library.get(i)); // Inserts other book to the right
             }
         }

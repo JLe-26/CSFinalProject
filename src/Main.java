@@ -16,7 +16,7 @@ public class Main {
 //        SearchBooks.categorySearch("Fiction");
 
     }
-// PUT COMMENTS FOR JEAN AND EVA
+
     public static ArrayList<Book> loadBooks(String[] files) throws FileNotFoundException {
         ArrayList<Book> library = new ArrayList<>();
         for (String file : files) {
