@@ -9,6 +9,12 @@ public class Main {
 
         OrganizeBooks.organizeTitle(library);
         OrganizeBooks.organizeAuthor(library);
+        OrganizeBooks.organizeCategories(library);
+
+//        SearchBooks.titleSearch("Spider's Web", library);
+//        SearchBooks.authorSearch("Charles Osborne");
+//        SearchBooks.categorySearch("Fiction");
+
     }
 // PUT COMMENTS FOR JEAN AND EVA
     public static ArrayList<Book> loadBooks(String[] files) throws FileNotFoundException {

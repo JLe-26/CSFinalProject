@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/**
+ * @author Jenny Le
+ * This program uses a binary search tree data structure
+ * @param <E> This class is written with generics so it can be implemented with various data types
+ */
+
 public class LinkedBinarySearchTree<E extends Comparable<E>> implements BinaryTree<E> {
     private final E data;
     protected LinkedBinarySearchTree<E> leftSubTree;
@@ -21,9 +27,9 @@ public class LinkedBinarySearchTree<E extends Comparable<E>> implements BinaryTr
     @Override
     public void insert(E e) {
         if (e.compareTo(data) < 0) {
-            leftSubTree.insert(e);
+                leftSubTree.insert(e);
         } else if (e.compareTo(data) > 0) {
-            rightSubTree.insert(e);
+                rightSubTree.insert(e);
         } else {
             e = data;
         }
