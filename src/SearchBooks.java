@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * by title, author, or category
  * It also includes a method where the user can search for a book based on a keyword/tag
  */
-public class SearchBooks {
-
+public class SearchBooks extends OrganizeBooks {
     private ArrayList<Book> library;
     /**
      * This method will first organize the books in the library database by title
@@ -21,9 +20,11 @@ public class SearchBooks {
         // Loop: go into the sorted binary tree of titles (how??), get title for each Book object, compare to string tit, if equal send to orgbytitle arraylist
         this.library = library;
         ArrayList<Book> orgByTitle = new ArrayList<>(); // Will contain the books that have the title searched by the user
-        OrganizeBooks.organizeTitle(library); // Sorts the books by title alphabetically
+        organizeTitle(library); // Sorts the books by title alphabetically
         // get the sorted binary tree
+        for(int i=0; i< library.size(); i++){
 
+        }
         return orgByTitle;
     }
     /**
@@ -61,6 +62,8 @@ public class SearchBooks {
     public static ArrayList<Book> tagSearch(String tag, ArrayList<Book> library){
         // will be used in organizeBooks method for keyword (tag)
         ArrayList<Book> orgByTag = new ArrayList<>(); // Will contain the books that have the tag searched by the user
+        // Look at library database
+        // For each book object, if the tag is contained in the desc, add it to the arraylist
         return orgByTag;
     }
 }

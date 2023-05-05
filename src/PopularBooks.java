@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * @ author Jenny Le
+ * @author Jenny Le
  * This class creates a heap based on the ratings of each Book in the library database.
  * Will make use of the organizeCategory method of the OrganizeBooks class to allow the user
  * to look at the most popular books within a certain category

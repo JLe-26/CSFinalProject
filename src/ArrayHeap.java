@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**@author Eva Ackley
  * This program creates a priority queue using a Heap data structure that utilizes an ArrayList
- * @param <E> This class is written with generics so it can be implemented with various data types
+ * @param <E> This class is written with generics, so it can be implemented with various data types
  */
 public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
