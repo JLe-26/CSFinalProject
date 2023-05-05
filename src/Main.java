@@ -1,58 +1,26 @@
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException{
-        String[] files = {"src/Book1.csv"};
-        ArrayList<Book> library = loadBooks(files);
-
-        OrganizeBooks.organizeTitle(library);
-        OrganizeBooks.organizeAuthor(library);
-        OrganizeBooks.organizeCategories(library);
-
+        String[] files = {"src/BookTest.csv"};
+        Library bookLibrary = new Library(files);
+        ArrayList<Book> library = bookLibrary.getLibrary(); // contains all the books from the csv file
+        LinkedBinarySearchTreeBook<ArrayList<Book>> booksOrganized = OrganizeBooks.organizeTitle(library);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> autOrganized = OrganizeBooks.organizeAuthor(library);
+        //OrganizeBooks.organizeAuthor(library);
+        //OrganizeBooks.organizeCategories(library);
+        ArrayList<Book> titles = SearchBooks.titleSearch("Gilead", library, booksOrganized);
+        // need to make toLowercase so that it won't result in an error if the user types in lowercase
+        System.out.println(titles.get(0));
 //        SearchBooks.titleSearch("Spider's Web", library);
 //        SearchBooks.authorSearch("Charles Osborne");
 //        SearchBooks.categorySearch("Fiction");
 
-    }
+        ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
+        // error saying that this.data is null in authorsearch and organizeauthor
+        System.out.println(authors.get(0));
 
-    public static ArrayList<Book> loadBooks(String[] files) throws FileNotFoundException {
-        ArrayList<Book> library = new ArrayList<>();
-        for (String file : files) {
-            CSVReader reader = new CSVReader();
-            FileReader input = new FileReader(file);
-            ArrayList<String[]> myEntries = reader.read(input);
-            for (String[] tokens : myEntries) {
-                String ISBN10 = tokens[1];
-                String title = tokens[2];
-                String subtitle = tokens[3];
-                String[] authors = tokens[4].split(";");
-                String[] categories = tokens[5].split(";");
-                String thumbnail = tokens[6];
-                String description = tokens[7];
-                int publish_year = 0;
-                if (!tokens[8].equals("")) {
-                    publish_year = Integer.parseInt(tokens[8]);
-                }
-                double average_rating = 0;
-                if (!tokens[9].equals("")) {
-                    average_rating = Double.parseDouble(tokens[9]);
-                }
-                int num_pages = 0;
-                if (!tokens[10].equals("")) {
-                    num_pages = Integer.parseInt(tokens[10]);
-                }
-                int ratings = 0;
-                if (!tokens[11].equals("")) {
-                    ratings = Integer.parseInt(tokens[11]);
-                }
-                Book myBook = new Book(ISBN10, title, subtitle, authors, categories, thumbnail, description, publish_year,
-                        average_rating, num_pages, ratings);
-                library.add(myBook);
-            }
-        }
-        return library;
     }
 
 }

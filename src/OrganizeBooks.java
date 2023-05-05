@@ -14,24 +14,14 @@ public class OrganizeBooks {
      * @param library An arrayList of books, which is the library database
      * @return An ArrayList of Books which contains the sorted tree sortedTitle
      */
-    public static ArrayList<Book> organizeTitle(ArrayList<Book> library){
-        // Need to add data in order for the left and right subtrees to be created, but cannot put an array list of book objects
-        LinkedBinarySearchTree<Book> sortedTitle = new LinkedBinarySearchTree<>();
-        for(int i = 0; i< library.size(); i++){
-            if(library.get(i).compareToTitle(library.get(i+1)) < 1 || library.get(i).compareToTitle(library.get(i+1)) == 0){
-                // insert titles to the left subtree of sorted books by title
-                sortedTitle.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                sortedTitle.rightSubTree.insert(library.get(i+1)); //Inserts other book to the right
-            } else if(library.get(i).compareToTitle(library.get(i+1)) > 1){
-                // insert titles to the right subtree of sorted books by title
-                sortedTitle.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                sortedTitle.rightSubTree.insert(library.get(i)); // Inserts other book to the right
-            }
+    public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeTitle(ArrayList<Book> library){
+        Book root = library.get(0);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedTitle = new LinkedBinarySearchTreeBook<>(root);
+        for(int i = 1; i< library.size()-1; i++){
+            sortedTitle.insertTitle(library.get(i));
         }
         // There is now a BST sorted by title called sortedTitle
-        // Need to separate so this returns null and a separate getter will return the arraylist
-        //
-        return sortedTitle.inOrder();
+        return sortedTitle;
     }
 
     /**
@@ -39,19 +29,14 @@ public class OrganizeBooks {
      * @param library An arrayList of books, which is the library database
      * @return An ArrayList of Books which contains the sorted tree sortedAuthor
      */
-    public static ArrayList<Book> organizeAuthor(ArrayList<Book> library){
-        LinkedBinarySearchTree<Book> sortedAuthor = new LinkedBinarySearchTree<>();
-        for(int i = 0; i < library.size(); i++){
-            if(library.get(i).compareToAuthors(library.get(i+1)) < 1 || library.get(i).compareToAuthors(library.get(i+1)) == 0){ // If the first book is alphabetically first or equal to the second, it will go to the left
-                sortedAuthor.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                sortedAuthor.rightSubTree.insert(library.get(i+1)); // Inserts other book to the right
-            } else if(library.get(i).compareToAuthors(library.get(i+1)) > 1){
-                sortedAuthor.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                sortedAuthor.rightSubTree.insert(library.get(i)); // Inserts other book to the right
-            }
+    public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeAuthor(ArrayList<Book> library){
+        Book root = library.get(0);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedAuthor = new LinkedBinarySearchTreeBook<>(root);
+        for(int i = 1; i < library.size()-1; i++){
+            sortedAuthor.insertAuthor(library.get(i));
         }
         // There is now a BST sorted by author called sortedAuthor
-        return sortedAuthor.inOrder();
+        return sortedAuthor;
     }
 
     /**
@@ -59,19 +44,14 @@ public class OrganizeBooks {
      * @param library An arrayList of books, which is the library database
      * @return An ArrayList of Books which contains the sorted tree sortedCategory
      */
-    public static ArrayList<Book> organizeCategories(ArrayList<Book> library){
-        LinkedBinarySearchTree<Book> sortedCategories = new LinkedBinarySearchTree<>();
-        for(int i = 0; i < library.size(); i++){
-            if(library.get(i).compareToCategories(library.get(i+1)) < 1 || library.get(i).compareToCategories(library.get(i+1)) == 0){
-                sortedCategories.leftSubTree.insert(library.get(i)); //Inserts first book if it is alphabetically first to the left
-                sortedCategories.rightSubTree.insert(library.get(i+1)); // Inserts other book to the right
-            } else if (library.get(i).compareToCategories(library.get(i+1)) > 1){
-                sortedCategories.leftSubTree.insert(library.get(i+1)); //Inserts second book if it is alphabetically first to the left
-                sortedCategories.rightSubTree.insert(library.get(i)); // Inserts other book to the right
-            }
+    public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeCategories(ArrayList<Book> library){
+        Book root = library.get(0);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedCategories = new LinkedBinarySearchTreeBook<>(root);
+        for(int i = 1; i < library.size()-1; i++){
+            sortedCategories.insertCategory(library.get(i));
         }
         // There is now a BST sorted by category called sortedCategories
-        return sortedCategories.inOrder();
+        return sortedCategories;
     }
 
 }

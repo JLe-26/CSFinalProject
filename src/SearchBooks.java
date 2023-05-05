@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Jenny Le
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  * by title, author, or category
  * It also includes a method where the user can search for a book based on a keyword/tag
  */
-public class SearchBooks extends OrganizeBooks {
+public class SearchBooks {
     private ArrayList<Book> library;
     /**
      * This method will first organize the books in the library database by title
@@ -16,14 +17,17 @@ public class SearchBooks extends OrganizeBooks {
      * @param library ArrayList of Books which is the library database
      * @return ArrayList of Books that contain the title searched by the user
      */
-    public ArrayList<Book> titleSearch(String tit, ArrayList<Book> library)  {
-        // Loop: go into the sorted binary tree of titles (how??), get title for each Book object, compare to string tit, if equal send to orgbytitle arraylist
-        this.library = library;
-        ArrayList<Book> orgByTitle = new ArrayList<>(); // Will contain the books that have the title searched by the user
-        organizeTitle(library); // Sorts the books by title alphabetically
-        // get the sorted binary tree
-        for(int i=0; i< library.size(); i++){
-
+    public static ArrayList<Book> titleSearch(String tit, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree)  {
+        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList();
+        Book current = orgByTitle.get(0);
+        if (orgByTitleTree.isEmpty()) {
+            return null;
+        }
+        else if (tit.compareTo(current.getTitle()) < 0) {
+            titleSearch(tit, library, orgByTitleTree.leftSubTree);
+        }
+        else if (tit.compareTo(current.getTitle()) > 0) {
+            titleSearch(tit, library, orgByTitleTree.rightSubTree);
         }
         return orgByTitle;
     }
@@ -35,8 +39,18 @@ public class SearchBooks extends OrganizeBooks {
      * @param library ArrayList of Books which is the library database
      * @return ArrayList of Books that contain the author searched by the user
      */
-    public static ArrayList<Book> authorSearch(String aut, ArrayList<Book> library){
-        ArrayList<Book> orgByAuthor = new ArrayList<>(); // Will contain the books that have the author searched by the user
+    public static ArrayList<Book> authorSearch(String aut, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByAuthorTree){
+        ArrayList<Book> orgByAuthor = orgByAuthorTree.getRootList(); // Will contain the books that have the author searched by the user
+        Book current = orgByAuthor.get(0);
+        if (orgByAuthorTree.isEmpty()) {
+            return null;
+        }
+        else if (aut.compareTo(Arrays.toString(current.getAuthors())) < 0) {
+            authorSearch(aut, library, orgByAuthorTree.leftSubTree);
+        }
+        else if (aut.compareTo(Arrays.toString(current.getAuthors())) > 0) {
+            authorSearch(aut, library, orgByAuthorTree.rightSubTree);
+        }
         return orgByAuthor;
     }
     /**
@@ -47,8 +61,18 @@ public class SearchBooks extends OrganizeBooks {
      * @param library ArrayList of Books which is the library database
      * @return ArrayList of Books that contain the category searched by the user
      */
-    public static ArrayList<Book> categorySearch(String cat, ArrayList<Book> library){
-        ArrayList<Book> orgByCategory = new ArrayList<>(); // Will contain the books that have the category searched by the user
+    public static ArrayList<Book> categorySearch(String cat, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByCatTree){
+        ArrayList<Book> orgByCategory = orgByCatTree.getRootList();
+        Book current = orgByCategory.get(0);// Will contain the books that have the category searched by the user
+        if (orgByCatTree.isEmpty()){
+            return null;
+        }
+        else if(cat.compareTo(Arrays.toString(current.getCategories())) < 0) {
+            categorySearch(cat, library, orgByCatTree.leftSubTree);
+        }
+        else if(cat.compareTo(Arrays.toString(current.getCategories())) > 0){
+            categorySearch(cat, library, orgByCatTree.rightSubTree);
+        }
         return orgByCategory;
     }
     /**
