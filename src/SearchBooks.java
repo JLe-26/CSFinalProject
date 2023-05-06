@@ -87,8 +87,9 @@ public class SearchBooks {
         // will be used in organizeBooks method for keyword (tag)
         Book root = library.get(0);
         ArrayList<Book> orgByTag = new ArrayList<>(); // Will contain the books that have the tag searched by the user
-        // Look at library database
-        // Check that the user inputs a word from commonwords.csv
+        //Turn common words.csv into an array
+        // if the word searched is in the array, proceed
+        // Look at arbitrary sorted library tree
         // For each book object, get the description which is a string
         // Parse the string into an array and search the array for the input word
         for(int i = 0; i < library.size(); i++){
