@@ -37,12 +37,12 @@ public class LinkedBinarySearchTreeBook<E>{
     }
 
     public void insertAuthor(Book book) {
-        if (book.compareToAuthors(data.get(0)) < 0) {
+        if(data == null){
+            data.add(book);
+        } else if (book.compareToAuthors(data.get(0)) < 0) {
             leftSubTree.insertAuthor(book);
         } else if (book.compareToAuthors(data.get(0)) > 0) {
             rightSubTree.insertAuthor(book);
-        } else {
-            data.add(book);
         }
     }
 
