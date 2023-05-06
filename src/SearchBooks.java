@@ -45,10 +45,10 @@ public class SearchBooks {
         if (orgByAuthorTree.isEmpty()) {
             return null;
         }
-        else if (aut.compareTo(Arrays.toString(current.getAuthors())) < 0) {
+        else if (aut.compareTo(current.getAuthors()[0]) < 0) {
             authorSearch(aut, library, orgByAuthorTree.leftSubTree);
         }
-        else if (aut.compareTo(Arrays.toString(current.getAuthors())) > 0) {
+        else if (aut.compareTo(current.getAuthors()[0]) > 0) {
             authorSearch(aut, library, orgByAuthorTree.rightSubTree);
         }
         return orgByAuthor;
@@ -67,10 +67,10 @@ public class SearchBooks {
         if (orgByCatTree.isEmpty()){
             return null;
         }
-        else if(cat.compareTo(Arrays.toString(current.getCategories())) < 0) {
+        else if(cat.compareTo(current.getCategories()[0]) < 0) {
             categorySearch(cat, library, orgByCatTree.leftSubTree);
         }
-        else if(cat.compareTo(Arrays.toString(current.getCategories())) > 0){
+        else if(cat.compareTo(current.getCategories()[0]) > 0){
             categorySearch(cat, library, orgByCatTree.rightSubTree);
         }
         return orgByCategory;
