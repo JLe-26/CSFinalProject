@@ -42,13 +42,16 @@ public class SearchBooks {
     public static ArrayList<Book> authorSearch(String aut, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByAuthorTree){
         ArrayList<Book> orgByAuthor = orgByAuthorTree.getRootList(); // Will contain the books that have the author searched by the user
         Book current = orgByAuthor.get(0);
+        String[] arr = aut.split(" "); // Array of author full name, will use last item in array as last name
+        String other = current.getAuthors()[0];
+        String[] arr2 = other.split(" "); // Array of other author full name, will use last item in array as last name
         if (orgByAuthorTree.isEmpty()) {
             return null;
         }
-        else if (aut.compareTo(current.getAuthors()[0]) < 0) {
+        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) {
             authorSearch(aut, library, orgByAuthorTree.leftSubTree);
         }
-        else if (aut.compareTo(current.getAuthors()[0]) > 0) {
+        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) {
             authorSearch(aut, library, orgByAuthorTree.rightSubTree);
         }
         return orgByAuthor;

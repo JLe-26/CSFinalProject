@@ -8,14 +8,16 @@ public class Main {
         ArrayList<Book> library = bookLibrary.getLibrary(); // contains all the books from the csv file
         LinkedBinarySearchTreeBook<ArrayList<Book>> booksOrganized = OrganizeBooks.organizeTitle(library);
         LinkedBinarySearchTreeBook<ArrayList<Book>> autOrganized = OrganizeBooks.organizeAuthor(library);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> catOrganized = OrganizeBooks.organizeAuthor(library);
 
         ArrayList<Book> titles = SearchBooks.titleSearch("Gilead", library, booksOrganized);
         System.out.println(titles.get(0));
 
         ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
-        // error saying that this.data is null in authorsearch and organizeauthor
         System.out.println(authors.get(0));
 
+        ArrayList<Book> categories = SearchBooks.categorySearch("Fiction", library, catOrganized);
+        System.out.println(categories.get(0));
     }
 
 }
