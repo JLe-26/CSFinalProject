@@ -12,9 +12,9 @@ public class Main {
         ArrayList<Book> titles = SearchBooks.titleSearch("Gilead", library, booksOrganized);
         System.out.println(titles.get(0));
 
-//        ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
-//        // error saying that this.data is null in authorsearch and organizeauthor
-//        System.out.println(authors.get(0));
+        ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
+        // error saying that this.data is null in authorsearch and organizeauthor
+        System.out.println(authors.get(0));
 
     }
 
