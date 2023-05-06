@@ -10,12 +10,11 @@ public class Main {
         LinkedBinarySearchTreeBook<ArrayList<Book>> autOrganized = OrganizeBooks.organizeAuthor(library);
 
         ArrayList<Book> titles = SearchBooks.titleSearch("Gilead", library, booksOrganized);
-        // need to make toLowercase so that it won't result in an error if the user types in lowercase
         System.out.println(titles.get(0));
 
-        ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
-        // error saying that this.data is null in authorsearch and organizeauthor
-        System.out.println(authors.get(0));
+//        ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
+//        // error saying that this.data is null in authorsearch and organizeauthor
+//        System.out.println(authors.get(0));
 
     }
 
