@@ -13,9 +13,6 @@ public class Main {
         ArrayList<Book> titles = SearchBooks.titleSearch("Gilead", library, booksOrganized);
         // need to make toLowercase so that it won't result in an error if the user types in lowercase
         System.out.println(titles.get(0));
-//        SearchBooks.titleSearch("Spider's Web", library);
-//        SearchBooks.authorSearch("Charles Osborne");
-//        SearchBooks.categorySearch("Fiction");
 
         ArrayList<Book> authors = SearchBooks.authorSearch("Marilynne Robinson", library, autOrganized);
         // error saying that this.data is null in authorsearch and organizeauthor
