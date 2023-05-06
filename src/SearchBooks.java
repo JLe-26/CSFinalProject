@@ -93,7 +93,6 @@ public class SearchBooks {
         // Parse the string into an array and search the array for the input word
         for(int i = 0; i < library.size(); i++){
             String desc = root.getDescription();
-
         }
         return orgByTag;
     }
