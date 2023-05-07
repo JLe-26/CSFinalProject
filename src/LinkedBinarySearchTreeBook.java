@@ -27,8 +27,9 @@ public class LinkedBinarySearchTreeBook<E>{
     }
 
     /**
-     * This method inserts a Book object into a LinkedBinarySearchTreeBook
-     * @param book
+     * This method inserts a Book object into a LinkedBinarySearchTreeBook tree using the compareToTitle method
+     * This method is used in the OrganizeBooks class to sort books by title alphabetically
+     * @param book a Book object from the library arraylist
      */
     public void insertTitle(Book book) {
         if(data == null){ // ensures that the tree is never empty
@@ -43,6 +44,11 @@ public class LinkedBinarySearchTreeBook<E>{
         }
     }
 
+    /**
+     * This method inserts a Book object into a LinkedBinarySearchTreeBook tree using the compareToAuthor method
+     * This method is used in the OrganizeBooks class to sort books by author alphabetically
+     * @param book a Book object from the library arraylist
+     */
     public void insertAuthor(Book book) {
         if(data == null){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
@@ -58,6 +64,11 @@ public class LinkedBinarySearchTreeBook<E>{
         }
     }
 
+    /**
+     * This method inserts a Book object into a LinkedBinarySearchTreeBook tree using the compareToCategories method
+     * This method is used in the OrganizeBooks class to sort books by category alphabetically
+     * @param book
+     */
     public void insertCategory(Book book) {
         if(data == null){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
@@ -80,7 +91,7 @@ public class LinkedBinarySearchTreeBook<E>{
     }
 
     public ArrayList<Book> getRootList() {
-        return data;
+        return data; // get root element, but since data is an arraylist, it returns a list as the root
     }
 
 
@@ -106,7 +117,11 @@ public class LinkedBinarySearchTreeBook<E>{
         }
     }
 
-
+    /**
+     * This method converts a binary tree into an arraylist
+     * This method is not used for this particular program
+     * @return booksInOrder an ArrayList of book objects sorted in order by title, author, or category
+     */
     public ArrayList<Book> inOrder() {
         ArrayList<Book> booksInOrder = new ArrayList<>();
         if(this.isEmpty()){

@@ -18,15 +18,15 @@ public class SearchBooks {
      * @return ArrayList of Books that contain the title searched by the user
      */
     public static ArrayList<Book> titleSearch(String tit, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree)  {
-        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList();
+        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books with the title from the sorted title tree
         Book current = orgByTitle.get(0);
         if (orgByTitleTree.isEmpty()) {
             return null;
         }
-        else if (tit.compareTo(current.getTitle()) < 0) {
+        else if (tit.compareTo(current.getTitle()) < 0) { // if the title given is alphabetically before the root, search for titles on the left
             titleSearch(tit, library, orgByTitleTree.leftSubTree);
         }
-        else if (tit.compareTo(current.getTitle()) > 0) {
+        else if (tit.compareTo(current.getTitle()) > 0) { // if the title given is alphabetically after the root, search for titles on the right
             titleSearch(tit, library, orgByTitleTree.rightSubTree);
         }
         return orgByTitle;
@@ -48,13 +48,13 @@ public class SearchBooks {
         if (orgByAuthorTree.isEmpty()) {
             return null;
         }
-        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) {
+        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) { // compares the last name of each author alphabetically
             authorSearch(aut, library, orgByAuthorTree.leftSubTree);
         }
         else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) {
             authorSearch(aut, library, orgByAuthorTree.rightSubTree);
         } else {
-            if(arr[0].compareTo(arr2[0]) < 0){
+            if(arr[0].compareTo(arr2[0]) < 0){ // if the last name of both authors is the same, compare by first name
                 authorSearch(aut, library, orgByAuthorTree.leftSubTree);
             } else if (arr[0].compareTo(arr2[0]) > 0){
                 authorSearch(aut, library, orgByAuthorTree.rightSubTree);
@@ -71,38 +71,52 @@ public class SearchBooks {
      * @return ArrayList of Books that contain the category searched by the user
      */
     public static ArrayList<Book> categorySearch(String cat, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByCatTree){
-        ArrayList<Book> orgByCategory = orgByCatTree.getRootList();
-        Book current = orgByCategory.get(0);// Will contain the books that have the category searched by the user
+        ArrayList<Book> orgByCategory = orgByCatTree.getRootList(); // Will contain the books that have the category searched by the user
+        Book current = orgByCategory.get(0);
         if (orgByCatTree.isEmpty()){
             return null;
         }
-        else if(cat.compareTo(current.getCategories()[0]) < 0) {
+        else if(cat.compareTo(current.getCategories()[0]) < 0) { // if given category is alphabetically before the root, search in the left subtree
             categorySearch(cat, library, orgByCatTree.leftSubTree);
         }
-        else if(cat.compareTo(current.getCategories()[0]) > 0){
+        else if(cat.compareTo(current.getCategories()[0]) > 0){ // if given category is alphabetically after the root, search in the right subtree
             categorySearch(cat, library, orgByCatTree.rightSubTree);
         }
         return orgByCategory;
     }
     /**
-     * This method will first organize the books in the library database by tag
-     * and then search for Books with the tag indicated by the string input by the user.
+     * This method will first check if the string input by the user is in the list of common words
+     * and then look at each book in the orgByTitleTree to see if the tag can be found in the description
      * Will return null if the tag is entered incorrectly
      * @param tag String tag searched by the user
-     * @param library ArrayList of Books which is the library database
+     * @param words ArrayList of Strings which is the list of all common words
+     * @param orgByTitleTree a tree of books sorted by title (arbitrary, could search by tag in any sorted tree)
      * @return ArrayList of Books that contain the tag searched by the user
      */
-    public static ArrayList<Book> tagSearch(String tag, ArrayList<Book> library){
-        // will be used in organizeBooks method for keyword (tag)
-        Book root = library.get(0);
+    public static ArrayList<Book> tagSearch(String tag, ArrayList<String> words, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree){
+        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books with the title from the sorted title tree
+        Book current = orgByTitle.get(0); // the first book from the arraylist
+        String desc = current.getDescription(); // get the description of the book
+        String[] arr3 = desc.split(" "); // parse the description into a string array
         ArrayList<Book> orgByTag = new ArrayList<>(); // Will contain the books that have the tag searched by the user
-        //Turn common words.csv into an array
-        // if the word searched is in the array, proceed
-        // Look at arbitrary sorted library tree
-        // For each book object, get the description which is a string
-        // Parse the string into an array and search the array for the input word
-        for(int i = 0; i < library.size(); i++){
-            String desc = root.getDescription();
+        // Continue for all books in the sorted title tree
+        for(String word: words){ // for every word in the arraylist of common words
+            if(tag.compareTo(word) != 0){ // if the tag given is not in the array of common words, return null
+                return null;
+            } else { // the tag given is in the array of common words, proceed
+                // Look at sorted title tree, get desc of each book in the tree
+                if(orgByTitleTree.isEmpty()){
+                    return null;
+                } else { // Go to every book in the subtree recursively
+                    // Need to traverse the left and right subtrees. How?
+                    for(String blah: arr3){ // for every string in the array of desc strings
+                        if(tag.compareTo(blah) == 0){ // if the given tag is in the desc
+                            orgByTag.add(current); // add the book to the arraylist of books with the tag searched by the user
+                        }
+                    }
+                }
+
+            }
         }
         return orgByTag;
     }

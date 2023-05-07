@@ -16,9 +16,9 @@ public class OrganizeBooks {
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeTitle(ArrayList<Book> library){
         Book root = library.get(0);
-        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedTitle = new LinkedBinarySearchTreeBook<>(root);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedTitle = new LinkedBinarySearchTreeBook<>(root); // New binary tree where sorted books by title will be inserted
         for(int i = 1; i< library.size()-1; i++){
-            sortedTitle.insertTitle(library.get(i));
+            sortedTitle.insertTitle(library.get(i)); // all books from the library are inserted alphabetically
         }
         // There is now a BST sorted by title called sortedTitle
         return sortedTitle;
@@ -31,9 +31,9 @@ public class OrganizeBooks {
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeAuthor(ArrayList<Book> library){
         Book root = library.get(0);
-        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedAuthor = new LinkedBinarySearchTreeBook<>(root);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedAuthor = new LinkedBinarySearchTreeBook<>(root); // New binary tree where sorted books by author will be inserted
         for(int i = 1; i < library.size()-1; i++){
-            sortedAuthor.insertAuthor(library.get(i));
+            sortedAuthor.insertAuthor(library.get(i)); // all books from the library are inserted alphabetically
         }
         // There is now a BST sorted by author called sortedAuthor
         return sortedAuthor;
@@ -46,9 +46,9 @@ public class OrganizeBooks {
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeCategories(ArrayList<Book> library){
         Book root = library.get(0);
-        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedCategories = new LinkedBinarySearchTreeBook<>(root);
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedCategories = new LinkedBinarySearchTreeBook<>(root); // New binary tree where sorted books by category will be inserted
         for(int i = 1; i < library.size()-1; i++){
-            sortedCategories.insertCategory(library.get(i));
+            sortedCategories.insertCategory(library.get(i)); // all books from the library are inserted alphabetically
         }
         // There is now a BST sorted by category called sortedCategories
         return sortedCategories;
