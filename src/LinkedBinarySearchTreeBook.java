@@ -26,46 +26,50 @@ public class LinkedBinarySearchTreeBook<E>{
         count++;
     }
 
+    /**
+     * This method inserts a Book object into a LinkedBinarySearchTreeBook
+     * @param book
+     */
     public void insertTitle(Book book) {
-        if(data == null){
+        if(data == null){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
-        } else if (book.compareToTitle(data.get(0)) < 0) {
+        } else if (book.compareToTitle(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
             leftSubTree.insertTitle(book);
-        } else if (book.compareToTitle(data.get(0)) > 0) {
+        } else if (book.compareToTitle(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
             rightSubTree.insertTitle(book);
         }
     }
 
     public void insertAuthor(Book book) {
-        if(data == null){
+        if(data == null){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
-        } else if (book.compareToAuthors(data.get(0)) < 0) {
+        } else if (book.compareToAuthors(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
             leftSubTree.insertAuthor(book);
-        } else if (book.compareToAuthors(data.get(0)) > 0) {
+        } else if (book.compareToAuthors(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
             rightSubTree.insertAuthor(book);
         } else {
-            data.add(book);
+            data.add(book); // if there is another book with the same author, it is added to the arraylist
         }
     }
 
     public void insertCategory(Book book) {
-        if(data == null){
+        if(data == null){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
-        } else if (book.compareToCategories(data.get(0)) < 0) {
+        } else if (book.compareToCategories(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
             leftSubTree.insertCategory(book);
-        } else if (book.compareToCategories(data.get(0)) > 0) {
+        } else if (book.compareToCategories(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
             rightSubTree.insertCategory(book);
         } else {
-            data.add(book);
+            data.add(book); // if there is another book with the same category, it is added to the arraylist
         }
     }
 
