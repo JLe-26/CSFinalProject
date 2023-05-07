@@ -86,44 +86,5 @@ public class SearchBooks {
         }
         return orgByCategory;
     }
-    /**
-     * This method will first check if the string input by the user is in the list of common words
-     * and then look at each book in the orgByTitleTree to see if the tag can be found in the description
-     * Will return null if the tag is entered incorrectly
-     * THIS METHOD IS CURRENTLY NOT BEING USED
-     * @param tag String tag searched by the user
-     * @param words ArrayList of Strings which is the list of all common words
-     * @param orgByTitleTree a tree of books sorted by title (arbitrary, could search by tag in any sorted tree)
-     * @return ArrayList of Books that contain the tag searched by the user
-     */
-    public static ArrayList<Book> tagSearch(String tag, ArrayList<String> words, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree){
-        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books from the sorted title tree
-        Book current = orgByTitle.get(0); // the first book from the arraylist
-        String desc = current.getDescription(); // get the description of the book
-        String[] arr3 = desc.split(" "); // parse the description into a string array
-        ArrayList<Book> orgByTag = new ArrayList<>(); // Will contain the books that have the tag searched by the user
-        for(String word: words){ // for every word in the arraylist of common words
-            if(tag.compareTo(word) != 0){ // if the tag given is not in the array of common words, return null
-                return null;
-            } else { // the tag given is in the array of common words, proceed
-                // Look at sorted title tree, get desc of each book in the tree
-                if(orgByTitleTree.isEmpty()){
-                    return null;
-                } else { // Go to every book in the subtree recursively
-                    for(String blah: arr3){ // for every string in the array of desc strings
-                        if(tag.compareTo(blah) < 0){// if the given tag is in the desc
-                            tagSearch(tag, words, orgByTitleTree.leftSubTree); // goes into the left subtree to search for the tag
 
-                        } else if(tag.compareTo(blah) > 0){
-                            tagSearch(tag, words, orgByTitleTree.rightSubTree); // goes into the right subtree to search for the tag
-                        } else {
-                            orgByTag.add(current); // add the book to the arraylist of books with the tag searched by the user
-                        }
-                    }
-                }
-
-            }
-        }
-        return orgByTag;
-    }
 }
