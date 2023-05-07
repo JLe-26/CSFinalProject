@@ -53,6 +53,12 @@ public class SearchBooks {
         }
         else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) {
             authorSearch(aut, library, orgByAuthorTree.rightSubTree);
+        } else {
+            if(arr[0].compareTo(arr2[0]) < 0){
+                authorSearch(aut, library, orgByAuthorTree.leftSubTree);
+            } else if (arr[0].compareTo(arr2[0]) > 0){
+                authorSearch(aut, library, orgByAuthorTree.rightSubTree);
+            }
         }
         return orgByAuthor;
     }

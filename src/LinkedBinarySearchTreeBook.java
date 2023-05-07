@@ -27,12 +27,15 @@ public class LinkedBinarySearchTreeBook<E>{
     }
 
     public void insertTitle(Book book) {
-        if (book.compareToTitle(data.get(0)) < 0) {
+        if(data == null){
+            this.data = new ArrayList<>();
+            this.data.add(book);
+            leftSubTree = new LinkedBinarySearchTreeBook<>();
+            rightSubTree = new LinkedBinarySearchTreeBook<>();
+        } else if (book.compareToTitle(data.get(0)) < 0) {
             leftSubTree.insertTitle(book);
-        } else if (book.compareTo(data.get(0)) > 0) {
+        } else if (book.compareToTitle(data.get(0)) > 0) {
             rightSubTree.insertTitle(book);
-        } else {
-            data.add(book);
         }
     }
 
@@ -40,15 +43,24 @@ public class LinkedBinarySearchTreeBook<E>{
         if(data == null){
             this.data = new ArrayList<>();
             this.data.add(book);
+            leftSubTree = new LinkedBinarySearchTreeBook<>();
+            rightSubTree = new LinkedBinarySearchTreeBook<>();
         } else if (book.compareToAuthors(data.get(0)) < 0) {
             leftSubTree.insertAuthor(book);
         } else if (book.compareToAuthors(data.get(0)) > 0) {
             rightSubTree.insertAuthor(book);
+        } else {
+            data.add(book);
         }
     }
 
     public void insertCategory(Book book) {
-        if (book.compareToCategories(data.get(0)) < 0) {
+        if(data == null){
+            this.data = new ArrayList<>();
+            this.data.add(book);
+            leftSubTree = new LinkedBinarySearchTreeBook<>();
+            rightSubTree = new LinkedBinarySearchTreeBook<>();
+        } else if (book.compareToCategories(data.get(0)) < 0) {
             leftSubTree.insertCategory(book);
         } else if (book.compareToCategories(data.get(0)) > 0) {
             rightSubTree.insertCategory(book);
