@@ -15,7 +15,6 @@ public class OrganizeBooks {
      * @return An ArrayList of Books which contains the sorted tree sortedTitle
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeTitle(ArrayList<Book> library){
-        //Book root = library.get(0);
         LinkedBinarySearchTreeBook<ArrayList<Book>> sortedTitle = new LinkedBinarySearchTreeBook<>(); // New binary tree where sorted books by title will be inserted
         for(int i = 0; i< library.size(); i++){
             sortedTitle.insertTitle(library.get(i)); // all books from the library are inserted alphabetically
@@ -30,7 +29,6 @@ public class OrganizeBooks {
      * @return An ArrayList of Books which contains the sorted tree sortedAuthor
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeAuthor(ArrayList<Book> library){
-
         LinkedBinarySearchTreeBook<ArrayList<Book>> sortedAuthor = new LinkedBinarySearchTreeBook<>(); // New binary tree where sorted books by author will be inserted
         for(int i = 0; i < library.size(); i++){
             sortedAuthor.insertAuthor(library.get(i)); // all books from the library are inserted alphabetically
@@ -45,9 +43,8 @@ public class OrganizeBooks {
      * @return An ArrayList of Books which contains the sorted tree sortedCategory
      */
     public static LinkedBinarySearchTreeBook<ArrayList<Book>> organizeCategories(ArrayList<Book> library){
-        Book root = library.get(0);
-        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedCategories = new LinkedBinarySearchTreeBook<>(root); // New binary tree where sorted books by category will be inserted
-        for(int i = 1; i < library.size()-1; i++){
+        LinkedBinarySearchTreeBook<ArrayList<Book>> sortedCategories = new LinkedBinarySearchTreeBook<>(); // New binary tree where sorted books by category will be inserted
+        for(int i = 0; i < library.size(); i++){
             sortedCategories.insertCategory(library.get(i)); // all books from the library are inserted alphabetically
         }
         // There is now a BST sorted by category called sortedCategories
