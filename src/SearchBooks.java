@@ -19,14 +19,17 @@ public class SearchBooks {
     public static ArrayList<Book> titleSearch(String tit, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree)  {
         ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books with the title from the sorted title tree
         Book current = orgByTitle.get(0);
+        tit = tit.toLowerCase();
         if (orgByTitleTree.isEmpty()) {
             return null;
         }
-        else if (tit.compareTo(current.getTitle()) < 0) { // if the title given is alphabetically before the root, search for titles on the left
-            titleSearch(tit, library, orgByTitleTree.leftSubTree);
+        else if (tit.compareTo(current.getTitle().toLowerCase()) < 0) { // if the title given is alphabetically before the root, search for titles on the left
+            orgByTitleTree = orgByTitleTree.leftSubTree;
+            return titleSearch(tit, library, orgByTitleTree);
         }
-        else if (tit.compareTo(current.getTitle()) > 0) { // if the title given is alphabetically after the root, search for titles on the right
-            titleSearch(tit, library, orgByTitleTree.rightSubTree);
+        else if (tit.compareTo(current.getTitle().toLowerCase()) > 0) { // if the title given is alphabetically after the root, search for titles on the right
+            orgByTitleTree = orgByTitleTree.rightSubTree;
+            return titleSearch(tit, library, orgByTitleTree);
         }
         return orgByTitle;
     }
@@ -41,8 +44,8 @@ public class SearchBooks {
     public static ArrayList<Book> authorSearch(String aut, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByAuthorTree){
         ArrayList<Book> orgByAuthor = orgByAuthorTree.getRootList(); // Will contain the books that have the author searched by the user
         Book current = orgByAuthor.get(0);
-        String[] arr = aut.split(" "); // Array of author full name, will use last item in array as last name
-        String other = current.getAuthors()[0];
+        String[] arr = aut.toLowerCase().split(" "); // Array of author full name, will use last item in array as last name
+        String other = current.getAuthors()[0].toLowerCase();
         String[] arr2 = other.split(" "); // Array of other author full name, will use last item in array as last name
         if (orgByAuthorTree.isEmpty()) {
             return null;
@@ -51,15 +54,15 @@ public class SearchBooks {
             return null; // Will result in a NullPointerException when printing out a book by a certain author because orgByAuthorTree will be null
         }
         else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) { // if the last name of the first author comes first alphabetically, search the left subtree
-            authorSearch(aut, library, orgByAuthorTree.leftSubTree);
+            return authorSearch(aut, library, orgByAuthorTree.leftSubTree);
         }
         else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) { // if the last name of the first author comes second alphabetically, search the right subtree
-            authorSearch(aut, library, orgByAuthorTree.rightSubTree);
+            return authorSearch(aut, library, orgByAuthorTree.rightSubTree);
         } else {
             if(arr[0].compareTo(arr2[0]) < 0){ // if the last name of both authors is the same, compare by first name
-                authorSearch(aut, library, orgByAuthorTree.leftSubTree);
+                return authorSearch(aut, library, orgByAuthorTree.leftSubTree);
             } else if (arr[0].compareTo(arr2[0]) > 0){
-                authorSearch(aut, library, orgByAuthorTree.rightSubTree);
+                return authorSearch(aut, library, orgByAuthorTree.rightSubTree);
             }
         }
         return orgByAuthor;
@@ -75,14 +78,15 @@ public class SearchBooks {
     public static ArrayList<Book> categorySearch(String cat, ArrayList<Book> library, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByCatTree){
         ArrayList<Book> orgByCategory = orgByCatTree.getRootList(); // Will contain the books that have the category searched by the user
         Book current = orgByCategory.get(0);
+        cat = cat.toLowerCase();
         if (orgByCatTree.isEmpty()){
             return null;
         }
-        else if(cat.compareTo(current.getCategories()[0]) < 0) { // if given category is alphabetically before the root, search in the left subtree
-            categorySearch(cat, library, orgByCatTree.leftSubTree);
+        else if(cat.compareTo(current.getCategories()[0].toLowerCase()) < 0) { // if given category is alphabetically before the root, search in the left subtree
+            return categorySearch(cat, library, orgByCatTree.leftSubTree);
         }
-        else if(cat.compareTo(current.getCategories()[0]) > 0){ // if given category is alphabetically after the root, search in the right subtree
-            categorySearch(cat, library, orgByCatTree.rightSubTree);
+        else if(cat.compareTo(current.getCategories()[0].toLowerCase()) > 0){ // if given category is alphabetically after the root, search in the right subtree
+            return categorySearch(cat, library, orgByCatTree.rightSubTree);
         }
         return orgByCategory;
     }

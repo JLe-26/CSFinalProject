@@ -32,15 +32,26 @@ public class LinkedBinarySearchTreeBook<E>{
      * @param book a Book object from the library arraylist
      */
     public void insertTitle(Book book) {
-        if(data == null){ // ensures that the tree is never empty
+        if(isEmpty()){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
+            count++;
         } else if (book.compareToTitle(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
-            leftSubTree.insertTitle(book);
+            if (leftSubTree.isEmpty()) {
+                this.leftSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                leftSubTree.insertTitle(book);
+            }
         } else if (book.compareToTitle(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
-            rightSubTree.insertTitle(book);
+            if (rightSubTree.isEmpty()) {
+                this.rightSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                rightSubTree.insertTitle(book);
+            }
         }
     }
 
@@ -50,15 +61,26 @@ public class LinkedBinarySearchTreeBook<E>{
      * @param book a Book object from the library arraylist
      */
     public void insertAuthor(Book book) {
-        if(data == null){ // ensures that the tree is never empty
+        if(isEmpty()){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
+            count++;
         } else if (book.compareToAuthors(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
-            leftSubTree.insertAuthor(book);
+            if (leftSubTree.isEmpty()) {
+                leftSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                leftSubTree.insertAuthor(book);
+            }
         } else if (book.compareToAuthors(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
-            rightSubTree.insertAuthor(book);
+            if (rightSubTree.isEmpty()) {
+                rightSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                rightSubTree.insertAuthor(book);
+            }
         } else {
             data.add(book); // if there is another book with the same author, it is added to the arraylist
         }
@@ -70,15 +92,26 @@ public class LinkedBinarySearchTreeBook<E>{
      * @param book
      */
     public void insertCategory(Book book) {
-        if(data == null){ // ensures that the tree is never empty
+        if(isEmpty()){ // ensures that the tree is never empty
             this.data = new ArrayList<>();
             this.data.add(book);
             leftSubTree = new LinkedBinarySearchTreeBook<>();
             rightSubTree = new LinkedBinarySearchTreeBook<>();
+            count++;
         } else if (book.compareToCategories(data.get(0)) < 0) { // if the book comes first alphabetically, it goes to the left subtree
-            leftSubTree.insertCategory(book);
+            if (leftSubTree.isEmpty()) {
+                leftSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                leftSubTree.insertCategory(book);
+            }
         } else if (book.compareToCategories(data.get(0)) > 0) { // if the book comes second alphabetically, it goes to the right subtree
-            rightSubTree.insertCategory(book);
+            if (rightSubTree.isEmpty()) {
+                rightSubTree = new LinkedBinarySearchTreeBook<>(book);
+            }
+            else {
+                rightSubTree.insertCategory(book);
+            }
         } else {
             data.add(book); // if there is another book with the same category, it is added to the arraylist
         }
