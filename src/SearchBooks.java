@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Jenny Le
@@ -35,7 +34,7 @@ public class SearchBooks {
      * This method will first organize the books in the library database by author
      * and then search for Books with the author indicated by the string input by the user.
      * Assumes the user enters the author correctly
-     * @param aut String author searched by the user
+     * @param aut String author searched by the user, needs to be the full name of the author
      * @param library ArrayList of Books which is the library database
      * @return ArrayList of Books that contain the author searched by the user
      */
@@ -48,10 +47,13 @@ public class SearchBooks {
         if (orgByAuthorTree.isEmpty()) {
             return null;
         }
-        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) { // compares the last name of each author alphabetically
+        else if (arr.length < 2){ // when the array length of the author name is less than two, it is not a full name
+            return null; // Will result in a NullPointerException when printing out a book by a certain author because orgByAuthorTree will be null
+        }
+        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) < 0) { // if the last name of the first author comes first alphabetically, search the left subtree
             authorSearch(aut, library, orgByAuthorTree.leftSubTree);
         }
-        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) {
+        else if (arr[arr.length-1].compareTo(arr2[arr2.length-1]) > 0) { // if the last name of the first author comes second alphabetically, search the right subtree
             authorSearch(aut, library, orgByAuthorTree.rightSubTree);
         } else {
             if(arr[0].compareTo(arr2[0]) < 0){ // if the last name of both authors is the same, compare by first name
@@ -88,6 +90,7 @@ public class SearchBooks {
      * This method will first check if the string input by the user is in the list of common words
      * and then look at each book in the orgByTitleTree to see if the tag can be found in the description
      * Will return null if the tag is entered incorrectly
+     * THIS METHOD IS CURRENTLY NOT BEING USED
      * @param tag String tag searched by the user
      * @param words ArrayList of Strings which is the list of all common words
      * @param orgByTitleTree a tree of books sorted by title (arbitrary, could search by tag in any sorted tree)
