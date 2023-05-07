@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * @author Jenny Le
- * This program uses a binary search tree data structure
+ * This program uses a binary search tree data structure to store books
  * @param <E> This class is written with generics, so it can be implemented with various data types
  */
 
