@@ -94,12 +94,11 @@ public class SearchBooks {
      * @return ArrayList of Books that contain the tag searched by the user
      */
     public static ArrayList<Book> tagSearch(String tag, ArrayList<String> words, LinkedBinarySearchTreeBook<ArrayList<Book>> orgByTitleTree){
-        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books with the title from the sorted title tree
+        ArrayList<Book> orgByTitle = orgByTitleTree.getRootList(); // arraylist of books from the sorted title tree
         Book current = orgByTitle.get(0); // the first book from the arraylist
         String desc = current.getDescription(); // get the description of the book
         String[] arr3 = desc.split(" "); // parse the description into a string array
         ArrayList<Book> orgByTag = new ArrayList<>(); // Will contain the books that have the tag searched by the user
-        // Continue for all books in the sorted title tree
         for(String word: words){ // for every word in the arraylist of common words
             if(tag.compareTo(word) != 0){ // if the tag given is not in the array of common words, return null
                 return null;
@@ -108,9 +107,13 @@ public class SearchBooks {
                 if(orgByTitleTree.isEmpty()){
                     return null;
                 } else { // Go to every book in the subtree recursively
-                    // Need to traverse the left and right subtrees. How?
                     for(String blah: arr3){ // for every string in the array of desc strings
-                        if(tag.compareTo(blah) == 0){ // if the given tag is in the desc
+                        if(tag.compareTo(blah) < 0){// if the given tag is in the desc
+                            tagSearch(tag, words, orgByTitleTree.leftSubTree); // goes into the left subtree to search for the tag
+
+                        } else if(tag.compareTo(blah) > 0){
+                            tagSearch(tag, words, orgByTitleTree.rightSubTree); // goes into the right subtree to search for the tag
+                        } else {
                             orgByTag.add(current); // add the book to the arraylist of books with the tag searched by the user
                         }
                     }
